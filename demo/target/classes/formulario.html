@@ -1,0 +1,153 @@
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>Controle de Usuários</title>
+</head>
+
+<script type="text/javascript">
+function addIdToPath(form_name, base_url) {
+    var your_form = document.getElementById(form_name);
+    var id = your_form.elements.namedItem("id").value;
+    action_src = base_url + id;
+    your_form.action = action_src;
+}
+</script>
+
+<body>
+    <p>
+        <h1>Controle de Usuários</h1>
+    </p>
+    
+    <section class="section--container__responsive">
+        <section class="section--mainrow__responsive first--section">
+            <h1 class="generaltext">Inserir Usuário</h1>
+            <form class="form--register" action="http://localhost:6789/usuario/insert" method="post" id="form-add">
+                <p>Login:</p>          
+                <input class="input--register" type="text" name="login" value="" placeholder="Digite o login...">
+                <p>Senha:</p>              
+                <input class="input--register" type="password" name="senha" value="" placeholder="Digite a senha...">
+                <p>Idade:</p>
+                <input class="input--register" type="text" name="idade" value="" placeholder="Digite a idade...">
+                <input type="submit" value="Cadastrar" class="input--main__style input--button">
+            </form>
+        </section>
+    </section>
+
+    <section class="section--container__responsive">
+        <section class="section--row__responsive">
+            <h1 class="generaltext">Detalhar Usuário</h1>
+            <form onsubmit="addIdToPath('form-get', 'http://localhost:6789/usuario/')" method="get" id="form-get">
+                <input class="input--down" type="text" name="id" value="" placeholder="ID do usuário..."> 
+                <input type="submit" value="Consultar" class="input--button input--consult__style">
+            </form>
+        </section>
+        
+        <section class="section--row__responsive">
+            <h1 class="generaltext">Remover Usuário</h1>
+            <form onsubmit="addIdToPath('form-delete', 'http://localhost:6789/usuario/delete/')" method="get" id="form-delete">
+                <input class="input--down" type="text" name="id" value="" placeholder="ID do usuário...">
+                <input type="submit" value="Remover" class="input--remove__style input--button">
+            </form>
+        </section>
+        
+        <section class="section--row__responsive">
+            <h1 class="generaltext">Listar Usuários</h1>
+            <form action="http://localhost:6789/usuario/list/1" method="get" id="form-all">
+                <input type="submit" value="Todos" class="input--consult__style input--button">
+            </form>
+        </section>
+    </section>
+
+    <section class="section--container__responsive" style="visibility: hidden" id="user-result">
+        <table border="1">
+            <tr>
+                <td>ID do Usuário:</td>
+                <td><span id="id">Sem Resultado</span></td>
+            </tr>
+            <tr>
+                <td>Login:</td>
+                <td><span id="login">Sem Resultado</span></td>
+            </tr>
+            <tr>
+                <td>Idade:</td>
+                <td><span id="idade">Sem Resultado</span></td>
+            </tr>
+        </table>
+    </section>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: white;
+        }
+
+        .generaltext, p {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        .section--container__responsive {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            border-bottom: dashed;
+            border-color: gray;
+        }
+
+        .input--down {
+            display: block;
+            margin: 0px auto;
+            margin-bottom: 10px;
+        }
+
+        .input--main__style {
+            background-color: #00FF00;
+        }
+
+        .input--remove__style {
+            background-color: red;
+        }
+
+        .input--consult__style {
+            background-color: darkblue;
+        }
+
+        .input--button {
+            font-weight: bold;
+            font-family: Arial;
+            font-size: medium;
+            border-color: transparent;
+            display: block;
+            margin: 0px auto;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .input--register {
+            display: inline;
+        }
+
+        input {
+            display: block;
+            border-radius: 7px;
+            padding: 10px;
+            border-style: solid;
+            border-color: lightgray;
+            color: black;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        form p {
+            text-align: initial;
+            display: inline;
+            margin-left: 15px;
+        }
+    </style>
+
+</body>
+</html>
